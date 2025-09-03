@@ -2,14 +2,42 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Reproducción automática</title>
+  <title>Audio NFC</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #111;
+      color: white;
+      font-size: 2rem;
+      text-align: center;
+      cursor: pointer;
+      user-select: none;
+    }
+  </style>
 </head>
-<body>
-  <h1>Audio NFC</h1>
-  <audio autoplay loop>
+<body id="pagina">
+  🔊 Toca la pantalla para activar el sonido
+
+  <audio id="miAudio" loop>
     <source src="audio.mp3" type="audio/mpeg">
-    Tu navegador no soporta audio.
   </audio>
+
+  <script>
+    const pagina = document.getElementById("pagina");
+    const audio = document.getElementById("miAudio");
+
+    pagina.addEventListener("click", () => {
+      audio.play().then(() => {
+        pagina.innerHTML = "🎶 Sonando...";
+      }).catch(err => {
+        console.log("El navegador bloqueó la reproducción:", err);
+      });
+    });
+  </script>
 </body>
 </html>
 
