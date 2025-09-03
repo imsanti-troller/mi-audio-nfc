@@ -6,10 +6,21 @@
 </head>
 <body>
   <h1>Audio NFC</h1>
-  <audio autoplay loop muted>
+ <audio id="miAudio" loop>
   <source src="audio.mp3" type="audio/mpeg">
 </audio>
 
+<script>
+  window.addEventListener('load', () => {
+    const audio = document.getElementById('miAudio');
+    audio.play().catch(error => {
+      console.log("El navegador bloqueó el autoplay:", error);
+    });
+  });
+</script>
+
+
 </body>
 </html>
+
 
