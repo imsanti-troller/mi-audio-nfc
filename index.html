@@ -19,23 +19,28 @@
     }
   </style>
 </head>
-<body onclick="activarSonido()">
+<body id="pagina">
   🔊 Toca la pantalla para activar el sonido
 
-  <audio id="miAudio" autoplay loop muted>
+  <audio id="miAudio" loop>
     <source src="audio.mp3" type="audio/mpeg">
   </audio>
 
   <script>
-    function activarSonido() {
-      const audio = document.getElementById('miAudio');
-      audio.muted = false;  // quitar silencio
-      audio.play();         // reproducir
-      document.body.innerHTML = "🎶 Sonando..."; // cambiar mensaje
-    }
+    const pagina = document.getElementById("pagina");
+    const audio = document.getElementById("miAudio");
+
+    pagina.addEventListener("click", () => {
+      audio.play().then(() => {
+        pagina.innerHTML = "🎶 Sonando...";
+      }).catch(err => {
+        console.log("El navegador bloqueó la reproducción:", err);
+      });
+    });
   </script>
 </body>
 </html>
+
 
 
 
